@@ -43,10 +43,10 @@ defmodule Mix.Tasks.Erlydtl do
     end
 
     defp template_namespace do
-      ns = (Mix.project[:erlydtl][:template_namespace] || atom_to_binary(Mix.project[:app]) <> "_template")
+      ns = (Mix.project[:erlydtl][:template_namespace] || :erlang.atom_to_binary(Mix.project[:app]) <> "_template")
       case is_atom(ns) do
         true -> ns
-        _ -> binary_to_atom(ns)
+        _ -> :erlang.binary_to_atom(ns)
       end
 
     end
