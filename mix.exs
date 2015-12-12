@@ -4,7 +4,7 @@ defmodule Exlydtl.Mixfile do
   def project do
     [ app: :exlydtl,
       version: "0.0.1",
-      elixir: "~> 0.10.3",
+      elixir: "~> 1.1.0",
       deps: deps ]
   end
 
