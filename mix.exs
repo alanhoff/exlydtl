@@ -15,6 +15,6 @@ defmodule Exlydtl.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "~> 0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [{:erlydtl, github: "erlydtl/erlydtl", tag: "0.11.1", compile: "make"}]
+    [{:erlydtl, github: "erlydtl/erlydtl", compile: "make"}]
   end
 end
