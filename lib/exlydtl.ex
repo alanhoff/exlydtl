@@ -1,6 +1,6 @@
 defmodule Mix.Tasks.Erlydtl do
   use Mix.Task
-  
+
   defmodule Compile do
     @shortdoc "Precompiles erlydtl templates."
 
@@ -17,9 +17,9 @@ defmodule Mix.Tasks.Erlydtl do
           erlydtl: [template_path: 'templates',
                     template_namespace: :my_app_templates,
                     template_out_dir: "ebin"]]
- 
+
     ... and then run
-    
+
       shell$ mix erlydtl.compile
 
     you would end up with ebin/my_app_templates.beam, and each template could then be called in Elixir code like
@@ -28,7 +28,7 @@ defmodule Mix.Tasks.Erlydtl do
 
     Defaults:
       * template_path - char list - a directory named 'templates' in the project's top level
-      * template_namespace - atom - the app name with "_templates" appended. 
+      * template_namespace - atom - the app name with "_templates" appended.
       * template_out_dir - binary - the ebin directory in the project's top level.
     """
 
@@ -39,20 +39,20 @@ defmodule Mix.Tasks.Erlydtl do
     end
 
     defp template_path do
-      (Mix.project[:erlydtl][:template_path] || 'templates')
+      (Mix.Project.config()[:erlydtl][:template_path] || 'templates')
     end
 
     defp template_namespace do
-      ns = (Mix.project[:erlydtl][:template_namespace] || :erlang.atom_to_binary(Mix.project[:app]) <> "_template")
+      ns = (Mix.Project.config()[:erlydtl][:template_namespace] || :erlang.atom_to_binary(Mix.Project.config()[:app], :utf8) <> "_template")
       case is_atom(ns) do
         true -> ns
-        _ -> :erlang.binary_to_atom(ns)
+        _ -> :erlang.binary_to_atom(ns, :utf8)
       end
 
     end
 
     defp template_out_dir do
-      (Mix.project[:erlydtl][:template_out_dir] || "ebin/")
+      (Mix.Project.config()[:erlydtl][:template_out_dir] || "ebin/")
     end
   end
 end
